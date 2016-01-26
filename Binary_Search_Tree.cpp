@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <stdio.h>
 
 using namespace std;
@@ -19,7 +20,7 @@ class BST
 private:
 	struct node* root;
 	struct node* create_node(myint ele);
-	void print_inorder(struct node* _node);
+	void print_inorder(struct node** _node);
 public:
 	BST();
 	void insert(myint e);
@@ -53,7 +54,7 @@ void BST::insert(const myint e)
 	//cout<<"\n **** create_new returned " << tmp;
 	if(NULL == root)
 	{
-		cout<<"\n Inserted " << e <<" as root  ";;
+		//cout<<"\n Inserted " << e <<" as root  ";;
 		root = tmp;
 		return ;
 	}
@@ -75,11 +76,11 @@ void BST::insert(const myint e)
 
 	if(prev->val > e)
     {
-		cout<<"\n Inserted " << e <<" to the left of " << prev->val;
+		//cout<<"\n Inserted " << e <<" to the left of " << prev->val;
 		prev->left = tmp;
     } else
 	{
-		cout<<"\n Inserted " << e <<" to the right of " << prev->val;
+		//cout<<"\n Inserted " << e <<" to the right of " << prev->val;
 		prev->right = tmp;
 	}
 }
@@ -140,21 +141,21 @@ bool BST::find_max(myint& max)
 	return true;
 }
 
-void BST::print_inorder(struct node* cur_node)
+void BST::print_inorder(struct node** cur_node)
 {
-	if(cur_node == NULL)
+	if(*cur_node == NULL)
 	{
 		return;
 	}
-	print_inorder(cur_node->left);
-	cout<<"\b " << cur_node->val;
-	print_inorder(cur_node->right);
+	print_inorder(&((*cur_node)->left));
+	cout<<" " << (*cur_node)->val;
+	print_inorder(&((*cur_node)->right));
 }
 
 void BST::print_inorder_traversal()
 {
 	cout<<"\nInorder--> ";
-	return print_inorder(root);
+	return print_inorder(&root);
 	cout<<"\n";
 }
 
@@ -191,15 +192,25 @@ BST obj2;
 
 static const int arr[] = {5, 3, 4, 12, 10, 20, 0, 23};
 vector<int> v (arr, arr + sizeof(arr) / sizeof(arr[0]) );
-for(int i=0; i<v.size(); i++) { obj2.insert(v[i]); }
+cout<<"\n Inserting in BST:- ";
+for(int i=0; i<v.size(); i++) 
+{ 
+	cout<<" "<< v[i]; 
+	obj2.insert(v[i]);
+}
+cout<<"\n";
 //1:- Print inorder traversal.
 obj2.print_inorder_traversal();
+sort(v.begin(), v.end());
+cout<<"\nSorted arr=";
+for(int i=0; i<v.size() ; i++)
+cout<<" " << v[i];
 
 //2:- Print min.
-val= -9999; obj2.find_min(val); cout<<"\n Min = " << val;
+val= -9999; obj2.find_min(val); cout<<"\nBST-Min = " << val;
 
 //3:- Print max.
-val= 9999; obj2.find_max(val); cout<<"\n Max = " << val;
+val= 9999; obj2.find_max(val); cout<<"\nBST-Max = " << val;
 
 cout<<"\n";
 //-------------------------------------------------------------------------------
