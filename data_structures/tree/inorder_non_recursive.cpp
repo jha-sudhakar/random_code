@@ -1,6 +1,7 @@
 #include <stack>
 using namespace std; 
 
+// Submitted code on hackerrank and leetcode
 
 /* you only have to complete the function given below.  
 Node is defined as  
