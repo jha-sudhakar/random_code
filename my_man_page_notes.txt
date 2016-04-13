@@ -1,0 +1,4 @@
+1) Install cppman. Using it you can check the manual online.
+2) Run "cppman -c" to downliad the c++ manpage for offline viewing.
+3) [Optional] "cppman -m" can redirect the c++ manpages to unix man page cli
+

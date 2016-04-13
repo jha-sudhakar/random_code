@@ -1,0 +1,6 @@
+
+
+1) Enable paste in auto indent mode automatically.
+https://github.com/ConradIrwin/vim-bracketed-paste
+	cd ~/.vim/bundle
+	git clone https://github.com/ConradIrwin/vim-bracketed-paste
